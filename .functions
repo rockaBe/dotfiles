@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# removed in favour of zsh's `take` command.
+# see https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet#commands
+# function mkd() {
+#	mkdir -p "$@" && cd "$_";
+# }
