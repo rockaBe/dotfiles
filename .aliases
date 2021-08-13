@@ -9,11 +9,12 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+# alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+alias bafo="cd ~/github/lessonnine"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -149,3 +150,30 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# CUSTOM COMMANDS
+# LOCALSTACK
+alias ddb-local-admin='DYNAMO_ENDPOINT=http://localhost:4569 dynamodb-admin'
+
+# GIT
+alias git-delete-merged-locals='git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'
+
+# find listening service pid for port
+alias pid-for-port='function _fpfp(){ sudo lsof -i tcp:$1 };_fpfp'
+
+# DOT TO PNG
+dottopng() {
+  if [[ -n "${1+x}" ]]; then
+    dot -Tpng $1 -o ${1%.*}.png
+  else
+    echo 'Usage: dot-to-png <path_to_file>'
+  fi
+}
+
+# Create a timestamped email of the current mail account
+alias ge='echo "bnaehler+$(date +%s)@$(WORK_DOMAIN)" | pbcopy'
+
+# git alias for sorting by recent changes
+# stored to the global git config via:
+# git config --global alias.recent 'branch --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)"'
+alias git-recent='git recent | head -42'
