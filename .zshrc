@@ -46,7 +46,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler osx rake ruby zsh-autosuggestions)
+plugins=(git bundler osx rake ruby)
 
 # User configuration
 DEFAULT_USER=rockaBe
@@ -85,6 +85,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ll="ls -la"
 source $HOME/.aliases
 
+# disable autom completion
+ZSH_DISABLE_COMPFIX=true
+
 # Include and source further definitions:
 # * ~/.path can be used to extend `$PATH`
 # * ~/.extra can be used for other settings you don’t want to commit
@@ -93,16 +96,19 @@ for file in ~/.{exports,aliases,functions,extra}; do
 done;
 unset file;
 
+# initialize rbenv
 eval "$(rbenv init -)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+# make development.cli available
+export PATH="$HOME/github/lessonnine/development.cli/bin:$PATH"
 
 # add homebrew's php56 to the beginning of the PATH
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 
+# suffix $PATH with Cargo home
+export PATH="$PATH:$HOME/.cargo/bin"
 
+# fnm
+  eval "$(fnm env --multi)"
