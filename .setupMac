@@ -1,0 +1,31 @@
+# mainly following the great guide on https://sourabhbajaj.com/mac-setup/
+
+# instal brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# install zsh
+
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# install iterm
+brew cask install iterm2
+
+# install fnm
+# see https://github.com/Schniz/fnm for more information
+brew install fnm
+# initialize and configure it
+curl -fsSL https://fnm.vercel.app/install | bash
+# or use the shipped install script
+~/.fnm/.ci/install.sh
+
+# add gemfury as module provider
+npm config set registry https://npm-proxy.fury.io/babbel/
+npm login # with gemfury credentials
+
+# install rbenv
+brew install tree
+brew install rbenv ruby-build
+
+
+
